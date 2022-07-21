@@ -1,0 +1,53 @@
+### TASK 1 --  Install minikube on a VM
+
+# Update repo
+sudo apt-get update -y
+sudo apt-get install curl
+sudo apt-get install apt-transport-https 
+
+### Install Minikube on Ubuntu VM
+wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo cp minikube-linux-amd64 /usr/local/bin/minikube
+sudo chmod 755 /usr/local/bin/minikube
+
+### Install Kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+kubectl version -o json
+
+### Install Docker
+sudo apt install docker.io
+sudo usermod -a -G docker Ubuntu
+
+### Start Minikube
+minikube start --driver=docker
+
+
+
+
+### TASK 2 --  Install nginx ingress controller
+
+cd nginx 
+terraform init
+terraform plan
+terrafrom apply
+
+
+### TASK 3 -- 2 blue, green deployments with nginx routing traffic 75%, 20% respectively
+
+cd manual-deploy
+terraform init
+terraform plan
+terrafrom apply
+
+### TASK 4 -- Read the JSON file data and automate the terraform deployments
+
+cd automated-deploy
+terraform init
+terraform plan
+terrafrom apply
+
+NOTE -- I have modified the JSON file to have 2 deployments. Because with blue - green deployment we can only have 2 seployments. 
+        Though we can create multiple canary ingress. But the traffic won't be sent to more than 2 deployments
+

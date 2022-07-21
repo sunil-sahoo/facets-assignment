@@ -130,7 +130,7 @@ resource "kubernetes_ingress_v1" "ingress" {
 
   spec {
     rule {
-#      host = "gke-test.watiapp.io"
+      host = "test.domain.com"
       http {
         path {
           backend {
