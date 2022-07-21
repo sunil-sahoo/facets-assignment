@@ -1,0 +1,20 @@
+{
+"applications": [
+	{
+	"name": "foo",
+	"image": "hashicorp/http-echo",
+	"args": [{ "arg1" : "-listen=:8080" , "arg2" : "-text=\"I am foo\"" }],
+	"port": 8080,
+	"traffic_weight": "70",
+	"replicas": 2
+	},
+	{
+	"name": "bar",
+	"image": "hashicorp/http-echo",
+	"args": [{ "arg1" : "-listen=:8081" , "arg2" : "-text=\"I am bar\"" }],
+	"port": 8081,
+	"traffic_weight": "30",
+	"replicas": 2
+	}
+   ]
+}
